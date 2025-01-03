@@ -29,6 +29,7 @@
     background-color: white;
     border-radius: 20px;
     text-align: center;  
+    list-style-type: none;
     
 }
 
@@ -45,4 +46,8 @@
     color: black;
     display: block;
 }
-  
+
+svg{
+    font-size: 30px;
+    
+}

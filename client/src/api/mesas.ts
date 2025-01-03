@@ -13,7 +13,6 @@ export const mesasRequest = async (numero: string, estado: boolean) :Promise<Mes
     })
     
     const data : MesaResponse = res.data
-    console.log("mesa", data);
     return data
     
 }

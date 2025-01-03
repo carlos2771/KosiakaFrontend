@@ -1,0 +1,12 @@
+header{
+    padding: 30px;
+    background-color: #011627;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.cart-main{
+    margin-right: 120px;
+}

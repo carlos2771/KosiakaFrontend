@@ -10,7 +10,6 @@ export const loginRequest = async (email: string, password: string) : Promise<Lo
             password
         })
         const data: LoginResponse = res.data
-        console.log("data",data);
         
         return data 
     

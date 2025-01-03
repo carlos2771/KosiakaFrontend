@@ -1,0 +1,52 @@
+
+ .mains{
+    position: relative;
+    display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+    background-color: #011627;
+  
+} 
+.cart-container{
+    overflow: scroll;
+    height: 700px;
+}
+
+.cart{
+    width: 112px;
+    background-color: #D6D3D1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+    margin: 20px;
+    padding: 20px;
+    height: 180px;
+   
+}
+
+.img-cart{
+    width: 100%;
+    height: 50px;
+}
+.cart-content, .cart-title{
+    font-size: 17px;
+    color: black;
+}
+
+.cart-precio{
+    color: rgb(5, 168, 75);
+}
+
+.total {
+    position: sticky; /* Posiciona el elemento relativo a su contenedor padre */
+    bottom: 0; /* Pégalo a la parte inferior */
+    background-color: #011627; /* Asegura que el fondo no se mezcle */
+    color: white; /* Contraste del texto */
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    z-index: 10; /* Asegura que esté encima de otros elementos */
+}
