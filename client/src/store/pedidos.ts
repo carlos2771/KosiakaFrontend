@@ -12,29 +12,34 @@ interface IComida {
 }
 
 type Pedido = {
-  comida: IComida[]; // Cambiar el tipo según el contenido esperado
-  btbAvailable: boolean;
+  comidaCart: IComida[]; // Cambiar el tipo según el contenido esperado
+ 
 };
 
 type PedidoActions = {
   addToComida: (item: IComida) => void;
   deleteToComida : (item: IComida) => void;
+  updateToComida: (item: IComida) => void;
  
 };
 
 export const usePedidosStorage = create(
   persist<Pedido & PedidoActions>(
     (set) => ({
-      comida: [],
-      btbAvailable: true,
+      comidaCart: [],
+    
 
       addToComida: (item: IComida) =>
         set((state) => ({
-          comida: [...state.comida, item],
+          comidaCart: [...state.comidaCart, item],
         })),
       deleteToComida: (item: IComida) =>
         set((state) => ({
-          comida: state.comida.filter((cd) => cd._id  !== item._id ),
+          comidaCart: state.comidaCart.filter((cd) => cd._id  !== item._id ),
+        })),
+      updateToComida: (item: IComida) =>
+        set((state) => ({
+          comidaCart: state.comidaCart.map(i => i._id === item._id ? {...i, inCart:false} : i),
         })),
     }),
     {

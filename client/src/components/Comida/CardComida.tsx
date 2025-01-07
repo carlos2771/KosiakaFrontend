@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { getComidaRequest } from "../../api/comida";
+import { useEffect } from "react";
+import { getComidaRequest, updateComidaRequest } from "../../api/comida";
 import "../Comida/CardComida.css";
 import { usePedidosStorage } from "../../store/pedidos";
+import { useComidasStore } from "../../store/comidas";
 
 interface IComida {
   _id: string;
@@ -14,30 +15,31 @@ interface IComida {
 }
 
 export default function CardComida() {
-  const { comida, addToComida } = usePedidosStorage(set => set);
+  const {  addToComida, } = usePedidosStorage(set => set);
+  const {comida, setComida } = useComidasStore(set => set);
 
-  const [comidaState, setComidaState] = useState<IComida[]>([]);
+
+
 
   const getComida = async () => {
     const res = await getComidaRequest();
-    setComidaState(res?.data);
+    setComida(res?.data);
   };
+
 
   useEffect(() => {
     getComida();
-  }, [comida]);
+  }, []);
 
-  const handleAddToCart = (item: any) => {
-    const updatedItem = { ...item, inCart: true };  // Marcar el item como agregado al carrito
-    addToComida(updatedItem);  // Llamar la función para agregarlo al pedido
-    setComidaState(state => 
-      state.map(i => i._id === item._id ? updatedItem : i)
-    );  
+  const handleAddToCart = (item: IComida) => {
+    const updatedItem = { ...item, inCart: true };
+    updateComidaRequest(item._id, updatedItem);
+    addToComida(item);  
   };
 
   return (
     <div className="card-container">
-      {comidaState.map((item: any) => (
+      {comida.map((item: any) => (
         <div className="card" key={item._id}>
           <img
             className="img-card"
@@ -53,8 +55,12 @@ export default function CardComida() {
             <p className="card-precio">InCart: {item.inCart ? "Sí" : "No"}</p>
             {!item.inCart && (
               <button
-                className="btn-card"
-                onClick={() => handleAddToCart(item)}
+                className= "btn-card"  
+                onClick={() =>
+                {
+                  handleAddToCart(item)
+                }
+                }
               >
                 <p>Agregar al pedido</p>
               </button>

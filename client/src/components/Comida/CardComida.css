@@ -60,3 +60,6 @@
 .btn-card:hover{
     cursor: pointer;
 }
+.btn-hidden{
+    visibility: hidden;
+}
